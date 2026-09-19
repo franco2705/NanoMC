@@ -1,0 +1,14 @@
+# Local runtime data
+mcdata/logs/*
+mcdata/screenshots/*
+mcdata/saves/*
+mcdata/crash-reports/*
+mcdata/usercache.json
+mcdata/usernamecache.json
+
+# IDE / OS files
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
