@@ -1,74 +1,76 @@
 # NanoMC
-~ **Minecraft 1.8.9, but portable and tiny.** ~  
-## Please star the repo if you like this! Be free to open pull requests too!
 
-[MIT License – free to use and edit](https://github.com/skidsploiter/NanoMC/blob/main/LICENSE)  
+**Portable Minecraft 1.8.9 launcher**
 
->[!WARNING]
-> **Hey!**  
-> NanoMC is **experimental** and not meant for long-term/main usage.  
-> It was built for convenience — like running Minecraft from a USB stick, using school computers, or just keeping a lightweight version handy.  
-> Educational purposes only. Please use responsibly.
->
-> NOT maintained anymore
+NanoMC is a small, self-contained launcher layout for Minecraft 1.8.9. Game data, libraries and a bundled Windows Java runtime live inside the project folder.
 
----
+> **Status:** Experimental / legacy project. The repository is not actively maintained.
 
-## [?] What is NanoMC?
-NanoMC is a **portable, no-install build of Minecraft 1.8.9**.  
-It packs everything into a folder less than **300MB**, runs from anywhere, and doesn’t require Java or setup.  
-Remember, Eaglercraft is NOT native java, it's WebGL! This runs on native java x64!
+## Features
+- Portable Minecraft 1.8.9 setup
+- Bundled Java runtime for Windows
+- Forge 1.8.9 launch path
+- Worlds, resource packs and settings stay inside `mcdata/`
+- Windows launcher uses paths relative to the launcher
+- Linux launcher uses system Java
+- Automatic classpath generation from bundled libraries
 
-Basically: *grab it, plug in, double-click, and play.* Perfect if you love **quick PvP sessions on the go.**  
-<img width="645" height="176" alt="image" src="https://github.com/user-attachments/assets/748dfd9a-0013-471b-b148-3f44f2a902cb" />
+## Requirements
 
----
+### Windows
+- Windows 10 or newer recommended
+- At least 3 GB RAM
+- Around 500 MB free disk space
+- No separate Java installation required
 
-## [!] Why NanoMC?
-- **No installation needed** → Just unzip and play.  
-- **USB-friendly** → Take it anywhere, worlds and settings included.  
-- **Built-in Java** → No separate install required.  
-- **Lightweight** → Under 300MB compared to a regular 1.8.9 install.  
-- **Simple** → One `.bat` file to launch the game.  
+### Linux
+- Compatible Java runtime available as `java`
+- Linux-native libraries included in `mcdata/`
 
----
+## Usage
 
-## [...] Requirements
-- Windows (tested on Windows 10)  
-- At least **500MB free space**  
-- At least **3GB RAM**  
+### Windows
+1. Download and extract the repository.
+2. Keep the folder structure intact.
+3. Run `OpenMC.bat`.
+4. Enter a username.
+5. Minecraft starts using `mcdata/java/`.
 
----
-
-## [~] Setup Guide
-1. Head over to the [NanoMC GitHub repo](https://github.com/skidsploiter/NanoMC).  
-2. Click **Code → Download ZIP**.  
-3. Extract it anywhere (Desktop, USB stick, etc).  
-4. Run **OpenMC.bat**.  
-5. Enter a username when prompted.  
-6. That’s it—Minecraft 1.8.9 should launch.  
-
----
-
-## [!!] Usage
-- To play again, just re-run **OpenMC.bat**.  
-- Your **worlds, resource packs, and settings** are stored in the `mcdata/` folder—so they travel with you.  
-
----
-
-## [📂] Project Structure
+### Linux
+```bash
+chmod +x OpenMC.sh
+./OpenMC.sh
 ```
+
+To choose another Java executable:
+```bash
+JAVA_BIN=/path/to/java ./OpenMC.sh
+```
+
+## Project layout
+```text
 NanoMC/
-├── OpenMC.bat        # Launch Minecraft
-├── mcdata/           # Saves, resource packs, settings
-└── mcdata/Java/      # Built-in lightweight Java runtime
+├── OpenMC.bat
+├── OpenMC.sh
+├── README.md
+├── LICENSE
+└── mcdata/
+    ├── assets/
+    ├── config/
+    ├── libraries/
+    ├── mods/
+    ├── natives/
+    ├── resourcepacks/
+    ├── versions/
+    └── java/
 ```
 
----
+## Launcher improvements
+The launchers no longer maintain a huge hard-coded classpath. They discover JARs under `mcdata/libraries/` at runtime, so adding or replacing a library does not require editing the launcher.
 
-## [!] Notes
-- This is **not** an official Minecraft launcher.  
-- If you enjoy Minecraft, please support **Mojang/Microsoft** by owning a copy.  
-- Best for **PvP and casual play**. Performance may vary depending on your system.  
+The Windows launcher also resolves `mcdata` relative to `OpenMC.bat`, making shortcuts and USB use more reliable.
 
----
+## Legal / distribution
+NanoMC is not an official Minecraft launcher and is not affiliated with Mojang or Microsoft. Minecraft, Forge, Java and other bundled components have their own licenses and distribution terms. Check those terms before redistributing the complete package.
+
+The project itself is released under the MIT License where applicable.
